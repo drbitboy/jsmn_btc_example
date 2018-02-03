@@ -1,0 +1,22 @@
+{ "array":
+  [ "string"
+  , 0
+  , -999
+  , 1.2e2
+  , -01.23e-45
+  , true
+  , false
+  , null
+  ]
+, "object":
+  { "string": "string"
+  , "zero": 0
+  , "minus999": -999
+  , "one_hundred_twenty": 1.2e2
+  , "large_negative" : -01.23e-45
+  , "true_bool":  true
+  , "false_bool": false
+  , "null": null
+  }
+}
+ 
