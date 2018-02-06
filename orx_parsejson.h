@@ -66,7 +66,9 @@ void orx_getAnyOji(pAVLTREE pAvlRoot, char* searchKeyString, void *pOut, int *pF
 
 void orx_getNullOji(pAVLTREE pAvlRoot, char* searchKeyString, int* pFound);
 void orx_getDoubleOji(pAVLTREE pAvlRoot, char* searchKeyString, double* pOut, int* pFound);
-void orx_getBoolOji(pAVLTREE pAvlRoot, char* searchKeyString, OJIBOOL* pOut, int* pFound);
+void orx_getBooleanOji(pAVLTREE pAvlRoot, char* searchKeyString, OJIBOOL* pOut, int* pFound);
 void orx_getStringOji(pAVLTREE pAvlRoot, char* searchKeyString, int stringOutSize, char* pOut, int* pFound);
+
+int readOjiAvl(char* filepath, ppAVLTREE ppAvlTree, char* pfx, FILE *fOut);
 
 #endif // __ORX_PARSEJSON_H__

@@ -19,6 +19,7 @@ oji_comparator(const void* payload1, const void* payload2) {
   return strcmp(((pOJITEM)payload1)->keyString,((pOJITEM)payload2)->keyString);
 }
 
+
 /**********************************************************************/
 /* Free one OJITEM */
 void
@@ -32,6 +33,7 @@ pOJITEM pOji = (pOJITEM) pPayload;
   }
   return;
 }
+
 
 /**********************************************************************/
 /* Allocate new OJITEM, fill in AVLTREE items from another pointer
@@ -94,7 +96,8 @@ int szof;
   rtn->avltree.payload = (void*)rtn;
 
   return rtn;
-}
+} /* newOji(pOJITEM pSource, char* keyPrefix, int lenStrJson) */
+
 
 ////////////////////////////////////////////////////////////////////////
 // Routines to get data from OJI/AVL tree
@@ -109,6 +112,7 @@ OJITEM oji;
   // getAVL returns void*, either to payload matching keystring or to NULL
   return (pOJITEM) getAVL( pAvlRoot, &oji, (int*)0);
 }
+
 
 ////////////////////////////////////////////////////////////////////////
 // Get one value from OJI/AVL tree
@@ -182,7 +186,8 @@ char* pStringOut     = (char*)     pOut;
   *pFound = 1;
 
   return;
-}
+} /* orx_getAnyOji(...) */
+
 
 // Convenience wrappers for orx_getAnyOji
 void
@@ -235,7 +240,8 @@ char* pfx = pfxArg ? pfxArg : "";
     break;
   }
   return;
-}
+} /* printOjiPayload(pOJITEM pOji, FILE* fOut, char* pfxArg) */
+
 
 /**********************************************************************/
 /* Copy one OJITEM and insert it into a destination AVLTREE
@@ -243,7 +249,7 @@ char* pfx = pfxArg ? pfxArg : "";
  * - N.B. WARNING:  Deletes entire destination AVLTREE if newOji (malloc) fails
  */
 void
-copyOneOjiAvlTree(pAVLTREE pAvl, int level, void** args)  {
+copyOneOjiAvlTree(pAVLTREE pAvl, int level, void** args) {
 pOJITEM pOji;
 ppAVLTREE ppAvlTreeRootDest;
   if (!pAvl) return;
@@ -269,7 +275,8 @@ ppAVLTREE ppAvlTreeRootDest;
     *args = 0;
   }
   return;
-}
+} /* copyOneOjiAvlTree(pAVLTREE pAvl, int level, void** args) */
+
 
 /**********************************************************************/
 /* Copy an entire AVLTREE of OJITEMs */
@@ -279,7 +286,8 @@ pAVLTREE pAvlTreeDest = 0;
 void* args[1] = { (void*) &pAvlTreeDest };
   traverseFromRightAvl(pOjiAvlTreeSource, 0, copyOneOjiAvlTree, args);
   return pAvlTreeDest;
-}
+} /* copyWholeOjiAvlTree(pAVLTREE pOjiAvlTreeSource) */
+
 
 /**********************************************************************/
 void
@@ -340,7 +348,9 @@ int lenPayloadPlus1;
   fprintf(fOut,";%s]\n", found ? (found==-99?"get*Ldt untested":"get*Oji succeeded") : "get*Oji failed");
 
   return;
-}
+} /* printOjiAvl(pAVLTREE pAvl, int level, void** args) */
+
+
 ////////////////////////////////////////////////////////////////////////
 
 int
@@ -511,7 +521,8 @@ pOJITEM pOji = 0;
     return j+1;
   } /* else if (pToks->type == JSMN_ARRAY && pToks->type == JSMN_OBJECT) */
   return 0;
-}
+} /* jsmn_dump_to_avl(...) */
+
 
 /**********************************************************************/
 int
